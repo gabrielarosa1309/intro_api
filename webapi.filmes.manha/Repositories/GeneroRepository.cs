@@ -41,25 +41,48 @@ namespace webapi.filmes.manha.Repositories
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
                 //Declara a query que será executada
-                string queryInsert = "INSERT INTO Genero(Nome) VALUES ('" + novoGenero.Nome + "')";
+                string queryInsert = "INSERT INTO Genero(Nome) VALUES (@Nome)";
 
                 //Declara o SqlCommand passando a query que será executada e a conexão com o db
                 using (SqlCommand cmd = new SqlCommand(queryInsert,con))
                 {
+                    //Passa o valor do parâmetro @Nome
+                    cmd.Parameters.AddWithValue("@Nome", novoGenero.Nome);
+
                     //Abre a conexão com o banco de dados
                     con.Open();
 
                     //Executar a query (queryInsert)
                     cmd.ExecuteNonQuery();
-
-
                 }
             }
         }
 
-        public void Deletar(int id)
+        /// <summary>
+        /// Deletar um gênero existente
+        /// </summary>
+        /// <param name="IdGenero"> Objeto que será deletado </param>
+        public void Deletar(int IdGenero)
         {
-            throw new NotImplementedException();
+            //Declara a conexão passando a string de conexão como parâmetro
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                //Declara a query que será executada
+                string queryDelete = "DELETE FROM Genero WHERE IdGenero = @IdDelete";
+
+                //Declara o SqlCommand passando a query que será executada e a conexão com o db
+                using (SqlCommand cmd = new SqlCommand(queryDelete, con))
+                {
+                    //Passa o valor do parâmetro @Nome
+                    cmd.Parameters.AddWithValue("@IdDelete", IdGenero);
+
+                    //Abre a conexão com o banco de dados
+                    con.Open();
+
+                    //Executar a query (queryInsert)
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         /// <summary>

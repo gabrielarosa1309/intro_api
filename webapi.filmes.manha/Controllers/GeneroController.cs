@@ -75,5 +75,28 @@ namespace webapi.filmes.manha.Controllers
                 return BadRequest (erro.Message);
             }
         }
+
+        /// <summary>
+        /// Endpoint que aciona o método de deletar o gênero
+        /// </summary>
+        /// <param name="IdGenero"> Objeto recebido na requisição </param>
+        /// <returns> Retorna a resposta para o usuário (front-end) </returns>
+        [HttpDelete]
+        public IActionResult Delete (int IdGenero)
+        {
+            try
+            {
+                //Fazendo a chamada para o método cadastrar passando o objeto como parâmetro
+                _generoRepository.Deletar(IdGenero);
+
+                //Retorna um status code 202 - Deleted
+                return StatusCode(202);
+            }
+            catch (Exception erro)
+            {
+                //Retorna um status code 400 (Bad Request) e a mensagem do erro
+                return BadRequest(erro.Message);
+            }
+        }
     }
 }
