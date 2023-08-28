@@ -66,7 +66,7 @@
             </summary>
             <param name="id"> Id do objeto será deletado </param>
         </member>
-        <member name="M:webapi.filmes.manha.Interfaces.IGeneroRepository.BuscarPorId(System.Int32)">
+        <member name="M:webapi.filmes.manha.Interfaces.IGeneroRepository.GetById(System.Int32)">
             <summary>
             Buscar um objeto através do seu id
             </summary>
@@ -92,6 +92,13 @@
                 - Windows: Integrated Security = true
                 - SqlServer: User Id = sa; Pwd = Senha
             </summary>
+        </member>
+        <member name="M:webapi.filmes.manha.Repositories.GeneroRepository.GetById(System.Int32)">
+            <summary>
+            Buscar um gênero através do seu id
+            </summary>
+            <param name="id"> Id do gênero a ser buscado </param>
+            <returns> Objeto buscado ou null caso não seja encontrado </returns>
         </member>
         <member name="M:webapi.filmes.manha.Repositories.GeneroRepository.Cadastrar(webapi.filmes.manha.Domains.GeneroDomain)">
             <summary>

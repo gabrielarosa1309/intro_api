@@ -47,7 +47,7 @@ namespace webapi.filmes.manha.Controllers
             }
             catch (Exception erro) 
             {
-                //Retorna um status code BadRequest(400) e a mensagem do erro
+                //Retorna um status code 400 - BadRequest e a mensagem do erro
                 return BadRequest(erro.Message);
             }
         }
@@ -71,7 +71,7 @@ namespace webapi.filmes.manha.Controllers
             }
             catch (Exception erro) 
             { 
-                //Retorna um status code 400 (Bad Request) e a mensagem do erro
+                //Retorna um status code 400 - BadRequest e a mensagem do erro
                 return BadRequest (erro.Message);
             }
         }
@@ -86,7 +86,7 @@ namespace webapi.filmes.manha.Controllers
         {
             try
             {
-                //Fazendo a chamada para o método cadastrar passando o objeto como parâmetro
+                //Fazendo a chamada para o método deletar passando o objeto como parâmetro
                 _generoRepository.Deletar(IdGenero);
 
                 //Retorna um status code 202 - Deleted
@@ -94,9 +94,36 @@ namespace webapi.filmes.manha.Controllers
             }
             catch (Exception erro)
             {
-                //Retorna um status code 400 (Bad Request) e a mensagem do erro
+                //Retorna um status code 400 - BadRequest e a mensagem do erro
                 return BadRequest(erro.Message);
             }
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            try
+            {
+                //Cria um objeto generoBuscado que irá receber o gênero buscado no db
+                GeneroDomain generoBuscado = _generoRepository.GetById(id);
+
+                //Verifica se nenhum gênero foi encontrado
+                if (generoBuscado == null)
+                {
+                    //Caso não seja encontrado, retorna um status code 404 - Not Found com a mensagem personalizada
+                    return NotFound("Nenhum gênero foi encontrado!");
+                }
+
+                //Caso seja encontrado, retorna o gênero buscado com um status code 200 - Ok
+                return Ok(generoBuscado);
+            }
+            catch (Exception erro)
+            {
+                //Retorna um status code 400 - BadRequest e a mensagem do erro
+                return BadRequest(erro.Message);
+            }
+        }
+
+
     }
 }

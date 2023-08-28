@@ -46,6 +46,6 @@ namespace webapi.filmes.manha.Interfaces
         /// </summary>
         /// <param name="id"> Id do objeto a ser buscado </param>
         /// <returns> Objeto buscado </returns>
-        GeneroDomain BuscarPorId(int id);
+        GeneroDomain GetById(int id);
     }
 }
