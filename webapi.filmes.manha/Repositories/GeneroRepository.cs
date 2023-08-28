@@ -16,15 +16,51 @@ namespace webapi.filmes.manha.Repositories
         /// </summary>
         private string StringConexao = "Data Source = NOTE04-S15; Initial Catalog = Filmes; User Id = sa; Pwd = Senai@134";
 
-        public void AtualizarIdCorpo(GeneroDomain genero)
+
+
+
+        public void UpdateByIdBody(GeneroDomain genero)
         {
-            throw new NotImplementedException();
+            //Declara a conexão passando a string de conexão como parâmetro
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+
+            }
         }
 
-        public void AtualizarIdUrl(int id, GeneroDomain genero)
+
+
+
+        public void UpdateByIdUrl(int id, GeneroDomain generoUpdateUrl)
         {
-            throw new NotImplementedException();
+            //Declara a conexão passando a string de conexão como parâmetro
+            using (SqlConnection con = new SqlConnection(StringConexao))
+            {
+                GetById(id);
+
+                //Declara a query que será executada
+                string queryUpdateUrl = "UPDATE Genero SET Nome WHERE IdGenero = @id";
+
+                //Abre a conexão com o banco de dados
+                con.Open();
+
+                //Declara o SqlCommand passando a query que será executada e a conexão com o db
+                using (SqlCommand cmd = new SqlCommand(queryUpdateUrl, con))
+                {
+                    //Passa o valor do parâmetro @NomeUpdateUrl
+                    cmd.Parameters.AddWithValue("@id", generoUpdateUrl.Nome);
+
+                    //Abre a conexão com o banco de dados
+                    con.Open();
+
+                    //Executar a query (queryInsert)
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
+
+
+
 
         /// <summary>
         /// Buscar um gênero através do seu id
@@ -77,6 +113,9 @@ namespace webapi.filmes.manha.Repositories
             }
         }
 
+
+
+
         /// <summary>
         /// Cadastrar um novo gênero
         /// </summary>
@@ -104,6 +143,9 @@ namespace webapi.filmes.manha.Repositories
             }
         }
 
+
+
+
         /// <summary>
         /// Deletar um gênero existente
         /// </summary>
@@ -130,6 +172,9 @@ namespace webapi.filmes.manha.Repositories
                 }
             }
         }
+
+
+
 
         /// <summary>
         /// Listar todos os objetos (generos)
