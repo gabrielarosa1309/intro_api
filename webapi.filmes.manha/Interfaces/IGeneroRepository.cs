@@ -41,8 +41,8 @@ namespace webapi.filmes.manha.Interfaces
         /// Atualizar objeto existente passando o seu id pela url
         /// </summary>
         /// <param name="id"> Id do objeto que será atualizado </param>
-        /// <param name="genero"> Objeto atualizado (novas informações) </param>
-        void UpdateByIdUrl(int id,GeneroDomain genero);
+        /// <param name="generoUpdateUrl"> Objeto atualizado (novas informações) </param>
+        void UpdateByIdUrl(int id,GeneroDomain generoUpdateUrl);
 
 
 

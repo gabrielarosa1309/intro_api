@@ -18,40 +18,54 @@ namespace webapi.filmes.manha.Repositories
 
 
 
-
+        /// <summary>
+        /// Atualizar um gênero passando seu id pelo corpo da requisição
+        /// </summary>
+        /// <param name="genero"> Objeto gênero com as novas informações </param>
         public void UpdateByIdBody(GeneroDomain genero)
         {
             //Declara a conexão passando a string de conexão como parâmetro
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
+                string queryUpdateBody = "UPDATE Genero SET Nome = @novoNome WHERE IdGenero = @id";
 
+                con.Open();
+
+                using (SqlCommand cmd = new SqlCommand(queryUpdateBody,con))
+                {
+                    cmd.Parameters.AddWithValue("@novoNome", genero.Nome);
+                    cmd.Parameters.AddWithValue("@id", genero.IdGenero);
+
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
 
 
 
-        public void UpdateByIdUrl(int id, GeneroDomain generoUpdateUrl)
+        /// <summary>
+        /// Atualizar um gênero buscando pelo Id
+        /// </summary>
+        /// <param name="id"> Id do gênero que será modificado </param>
+        /// <param name="generoUpdateUrl"> Novo nome que o título receberá </param>
+        public void UpdateByIdUrl(int id, GeneroDomain genero)
         {
             //Declara a conexão passando a string de conexão como parâmetro
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
-                GetById(id);
-
-                //Declara a query que será executada
-                string queryUpdateUrl = "UPDATE Genero SET Nome WHERE IdGenero = @id";
-
                 //Abre a conexão com o banco de dados
                 con.Open();
+
+                //Declara a query que será executada
+                string queryUpdateUrl = "UPDATE Genero SET Nome = @novoNome WHERE IdGenero = @id";
 
                 //Declara o SqlCommand passando a query que será executada e a conexão com o db
                 using (SqlCommand cmd = new SqlCommand(queryUpdateUrl, con))
                 {
                     //Passa o valor do parâmetro @NomeUpdateUrl
-                    cmd.Parameters.AddWithValue("@id", generoUpdateUrl.Nome);
-
-                    //Abre a conexão com o banco de dados
-                    con.Open();
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@novoNome", genero.Nome);
 
                     //Executar a query (queryInsert)
                     cmd.ExecuteNonQuery();

@@ -24,6 +24,28 @@
             <param name="IdGenero"> Objeto recebido na requisição </param>
             <returns> Retorna a resposta para o usuário (front-end) </returns>
         </member>
+        <member name="M:webapi.filmes.manha.Controllers.GeneroController.GetById(System.Int32)">
+            <summary>
+            Endpoint que aciona o método de buscar gênero pelo id
+            </summary>
+            <param name="id"> Objeto recebido na requisição </param>
+            <returns> Retorna a resposta para o usuário (front-end) </returns>
+        </member>
+        <member name="M:webapi.filmes.manha.Controllers.GeneroController.PutIdUrl(System.Int32,webapi.filmes.manha.Domains.GeneroDomain)">
+            <summary>
+            Endpoint que aciona o método de atualizar gênero buscando pelo id
+            </summary>
+            <param name="id"> Objeto recebido na requisição </param>
+            <param name="generoUpdateUrl"> Objeto devolvido na requisição </param>
+            <returns> Retorna a resposta para o usuário (front-end) </returns>
+        </member>
+        <member name="M:webapi.filmes.manha.Controllers.GeneroController.PutIdBody(webapi.filmes.manha.Domains.GeneroDomain)">
+            <summary>
+            Endpoint que aciona o método de atualizar gênero pelo corpo buscando pelo id
+            </summary>
+            <param name="genero"> Objeto recebido na requisição </param>
+            <returns> Retorna a resposta para o usuário (front-end) </returns>
+        </member>
         <member name="T:webapi.filmes.manha.Domains.GeneroDomain">
             <summary>
             Classe que representa a entidade (tabela) Genero
@@ -47,18 +69,18 @@
             </summary>
             <returns> Lista com os objetos </returns>
         </member>
-        <member name="M:webapi.filmes.manha.Interfaces.IGeneroRepository.AtualizarIdCorpo(webapi.filmes.manha.Domains.GeneroDomain)">
+        <member name="M:webapi.filmes.manha.Interfaces.IGeneroRepository.UpdateByIdBody(webapi.filmes.manha.Domains.GeneroDomain)">
             <summary>
             Atualizar um objeto existente passando o seu id pelo corpo da requisição
             </summary>
             <param name="genero"> Objeto atualizado (novas informações) </param>
         </member>
-        <member name="M:webapi.filmes.manha.Interfaces.IGeneroRepository.AtualizarIdUrl(System.Int32,webapi.filmes.manha.Domains.GeneroDomain)">
+        <member name="M:webapi.filmes.manha.Interfaces.IGeneroRepository.UpdateByIdUrl(System.Int32,webapi.filmes.manha.Domains.GeneroDomain)">
             <summary>
             Atualizar objeto existente passando o seu id pela url
             </summary>
             <param name="id"> Id do objeto que será atualizado </param>
-            <param name="genero"> Objeto atualizado (novas informações) </param>
+            <param name="generoUpdateUrl"> Objeto atualizado (novas informações) </param>
         </member>
         <member name="M:webapi.filmes.manha.Interfaces.IGeneroRepository.Deletar(System.Int32)">
             <summary>
@@ -92,6 +114,19 @@
                 - Windows: Integrated Security = true
                 - SqlServer: User Id = sa; Pwd = Senha
             </summary>
+        </member>
+        <member name="M:webapi.filmes.manha.Repositories.GeneroRepository.UpdateByIdBody(webapi.filmes.manha.Domains.GeneroDomain)">
+            <summary>
+            Atualizar um gênero passando seu id pelo corpo da requisição
+            </summary>
+            <param name="genero"> Objeto gênero com as novas informações </param>
+        </member>
+        <member name="M:webapi.filmes.manha.Repositories.GeneroRepository.UpdateByIdUrl(System.Int32,webapi.filmes.manha.Domains.GeneroDomain)">
+            <summary>
+            Atualizar um gênero buscando pelo Id
+            </summary>
+            <param name="id"> Id do gênero que será modificado </param>
+            <param name="generoUpdateUrl"> Novo nome que o título receberá </param>
         </member>
         <member name="M:webapi.filmes.manha.Repositories.GeneroRepository.GetById(System.Int32)">
             <summary>

@@ -99,6 +99,11 @@ namespace webapi.filmes.manha.Controllers
             }
         }
 
+        /// <summary>
+        /// Endpoint que aciona o método de buscar gênero pelo id
+        /// </summary>
+        /// <param name="id"> Objeto recebido na requisição </param>
+        /// <returns> Retorna a resposta para o usuário (front-end) </returns>
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
@@ -124,6 +129,74 @@ namespace webapi.filmes.manha.Controllers
             }
         }
 
+        /// <summary>
+        /// Endpoint que aciona o método de atualizar gênero buscando pelo id
+        /// </summary>
+        /// <param name="id"> Objeto recebido na requisição </param>
+        /// <param name="generoUpdateUrl"> Objeto devolvido na requisição </param>
+        /// <returns> Retorna a resposta para o usuário (front-end) </returns>
+        [HttpPut("{id}")]
+        public IActionResult PutIdUrl(int id, GeneroDomain genero)
+        {
+            try
+            {
+                GeneroDomain generoBuscado = _generoRepository.GetById(id);
 
+                if (generoBuscado == null)
+                {
+                    //Caso não seja encontrado, retorna um status code 404 - Not Found com a mensagem personalizada
+                    return NotFound("Nenhum gênero foi encontrado para ser atualizado!");
+                }
+
+                _generoRepository.UpdateByIdUrl(id, genero);
+
+                //Retorna o gênero atualizado com um status code 200 - Ok
+                return StatusCode(200);
+            }
+            catch (Exception erro)
+            {
+                //Retorna um status code 400 - BadRequest e a mensagem do erro
+                return BadRequest(erro.Message);
+            }
+        }
+
+
+        /// <summary>
+        /// Endpoint que aciona o método de atualizar gênero pelo corpo buscando pelo id
+        /// </summary>
+        /// <param name="genero"> Objeto recebido na requisição </param>
+        /// <returns> Retorna a resposta para o usuário (front-end) </returns>
+        [HttpPut]
+        public IActionResult PutIdBody(GeneroDomain genero)
+        {
+            try
+            {
+                GeneroDomain generoBuscado = _generoRepository.GetById(genero.IdGenero);
+
+                if (generoBuscado != null)
+                {
+                    try
+                    {
+                        _generoRepository.UpdateByIdBody(genero);
+
+                        //Retorna o gênero atualizado com um status code 200 - Ok
+                        return StatusCode(204);
+                    }
+                    catch (Exception erro) 
+                    {
+                        //Retorna um status code 400 - BadRequest e a mensagem do erro
+                        return BadRequest(erro.Message);
+                    }
+                }
+
+                return NotFound ("Gênero não encontrado!");
+
+            }
+            catch (Exception erro)
+            {
+                //Retorna um status code 400 - BadRequest e a mensagem do erro
+                return BadRequest(erro.Message);
+            }
+        }
     }
 }
