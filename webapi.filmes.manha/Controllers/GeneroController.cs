@@ -30,6 +30,7 @@ namespace webapi.filmes.manha.Controllers
             _generoRepository = new GeneroRepository();
         }
 
+
         /// <summary>
         /// Endpoint que aciona o método ListarTodos no repositório
         /// </summary>
@@ -53,51 +54,8 @@ namespace webapi.filmes.manha.Controllers
         }
 
 
-        /// <summary>
-        /// Endpoint que aciona o método de cadastro do gênero
-        /// </summary>
-        /// <param name="novoGenero"> Objeto recebido na requisição </param>
-        /// <returns> Retorna a resposta para o usuário (front-end) </returns>
-        [HttpPost]
-        public IActionResult Post(GeneroDomain novoGenero)
-        {
-            try
-            {
-                //Fazendo a chamada para o método cadastrar passando o objeto como parâmetro
-                _generoRepository.Cadastrar(novoGenero);
 
-                //Retorna um status code 201 - Created
-                return StatusCode(201);
-            }
-            catch (Exception erro) 
-            { 
-                //Retorna um status code 400 - BadRequest e a mensagem do erro
-                return BadRequest (erro.Message);
-            }
-        }
 
-        /// <summary>
-        /// Endpoint que aciona o método de deletar o gênero
-        /// </summary>
-        /// <param name="IdGenero"> Objeto recebido na requisição </param>
-        /// <returns> Retorna a resposta para o usuário (front-end) </returns>
-        [HttpDelete]
-        public IActionResult Delete (int IdGenero)
-        {
-            try
-            {
-                //Fazendo a chamada para o método deletar passando o objeto como parâmetro
-                _generoRepository.Deletar(IdGenero);
-
-                //Retorna um status code 202 - Deleted
-                return StatusCode(202);
-            }
-            catch (Exception erro)
-            {
-                //Retorna um status code 400 - BadRequest e a mensagem do erro
-                return BadRequest(erro.Message);
-            }
-        }
 
         /// <summary>
         /// Endpoint que aciona o método de buscar gênero pelo id
@@ -129,11 +87,69 @@ namespace webapi.filmes.manha.Controllers
             }
         }
 
+
+
+
+
+        /// <summary>
+        /// Endpoint que aciona o método de cadastro do gênero
+        /// </summary>
+        /// <param name="novoGenero"> Objeto recebido na requisição </param>
+        /// <returns> Retorna a resposta para o usuário (front-end) </returns>
+        [HttpPost]
+        public IActionResult Post(GeneroDomain novoGenero)
+        {
+            try
+            {
+                //Fazendo a chamada para o método cadastrar passando o objeto como parâmetro
+                _generoRepository.Cadastrar(novoGenero);
+
+                //Retorna um status code 201 - Created
+                return StatusCode(201);
+            }
+            catch (Exception erro) 
+            { 
+                //Retorna um status code 400 - BadRequest e a mensagem do erro
+                return BadRequest (erro.Message);
+            }
+        }
+
+
+
+
+
+        /// <summary>
+        /// Endpoint que aciona o método de deletar o gênero
+        /// </summary>
+        /// <param name="IdGenero"> Objeto recebido na requisição </param>
+        /// <returns> Retorna a resposta para o usuário (front-end) </returns>
+        [HttpDelete]
+        public IActionResult Delete (int IdGenero)
+        {
+            try
+            {
+                //Fazendo a chamada para o método deletar passando o objeto como parâmetro
+                _generoRepository.Deletar(IdGenero);
+
+                //Retorna um status code 202 - Deleted
+                return StatusCode(202);
+            }
+            catch (Exception erro)
+            {
+                //Retorna um status code 400 - BadRequest e a mensagem do erro
+                return BadRequest(erro.Message);
+            }
+        }
+
+
+
+
+
         /// <summary>
         /// Endpoint que aciona o método de atualizar gênero buscando pelo id
         /// </summary>
         /// <param name="id"> Objeto recebido na requisição </param>
-        /// <param name="generoUpdateUrl"> Objeto devolvido na requisição </param>
+        /// <param name="genero"> Objeto devolvido na requisição </param>
         /// <returns> Retorna a resposta para o usuário (front-end) </returns>
         [HttpPut("{id}")]
         public IActionResult PutIdUrl(int id, GeneroDomain genero)
@@ -159,6 +175,9 @@ namespace webapi.filmes.manha.Controllers
                 return BadRequest(erro.Message);
             }
         }
+
+
+
 
 
         /// <summary>

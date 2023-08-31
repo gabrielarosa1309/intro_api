@@ -8,10 +8,12 @@ namespace webapi.filmes.manha.Interfaces
 
         List<FilmeDomain> ListarTodos();
 
-        void AtualizarIdCorpo(FilmeDomain filme);
+        void UpdateByIdBody(FilmeDomain filme);
+
+        void UpdateByIdUrl(int id, FilmeDomain filmeUpdateUrl);
 
         void Deletar(int id);
 
-        FilmeDomain BuscarPorId(int id);
+        FilmeDomain GetById(int id);
     }
 }

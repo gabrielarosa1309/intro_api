@@ -4,10 +4,59 @@
         <name>webapi.filmes.manha</name>
     </assembly>
     <members>
+        <member name="M:webapi.filmes.manha.Controllers.FilmeController.Get">
+            <summary>
+            Endpoint que aciona o método ListarTodos no repositório
+            </summary>
+            <returns> Retorna a resposta para o usuário (front-end) </returns>
+        </member>
+        <member name="M:webapi.filmes.manha.Controllers.FilmeController.Post(webapi.filmes.manha.Domains.FilmeDomain)">
+            <summary>
+            Endpoint que aciona o método de cadastro do filme
+            </summary>
+            <param name="novoFilme"> Objeto recebido na requisição </param>
+            <returns> Retorna a resposta para o usuário (front-end) </returns>
+        </member>
+        <member name="M:webapi.filmes.manha.Controllers.FilmeController.Delete(System.Int32)">
+            <summary>
+             Endpoint que aciona o método de deletar o filme
+            </summary>
+            <param name="IdFilme"> Objeto recebido na requisição </param>
+            <returns> Retorna a resposta para o usuário (front-end) </returns>
+        </member>
+        <member name="M:webapi.filmes.manha.Controllers.FilmeController.GetById(System.Int32)">
+            <summary>
+            Endpoint que aciona o método de buscar filme pelo id
+            </summary>
+            <param name="id"> Objeto recebido na requisição </param>
+            <returns> Retorna a resposta para o usuário (front-end) </returns>
+        </member>
+        <member name="M:webapi.filmes.manha.Controllers.FilmeController.PutIdBody(webapi.filmes.manha.Domains.FilmeDomain)">
+            <summary>
+            Endpoint que aciona o método de atualizar filme pelo corpo buscando pelo id
+            </summary>
+            <param name="filme"> Objeto recebido na requisição </param>
+            <returns> Retorna a resposta para o usuário (front-end) </returns>
+        </member>
+        <member name="M:webapi.filmes.manha.Controllers.FilmeController.PutIdUrl(System.Int32,webapi.filmes.manha.Domains.FilmeDomain)">
+            <summary>
+             Endpoint que aciona o método de atualizar filme buscando pelo id
+            </summary>
+            <param name="id"> Objeto recebido na requisição </param>
+            <param name="filme"> Objeto devolvido na requisição </param>
+            <returns> Retorna a resposta para o usuário (front-end) </returns>
+        </member>
         <member name="M:webapi.filmes.manha.Controllers.GeneroController.Get">
             <summary>
             Endpoint que aciona o método ListarTodos no repositório
             </summary>
+            <returns> Retorna a resposta para o usuário (front-end) </returns>
+        </member>
+        <member name="M:webapi.filmes.manha.Controllers.GeneroController.GetById(System.Int32)">
+            <summary>
+            Endpoint que aciona o método de buscar gênero pelo id
+            </summary>
+            <param name="id"> Objeto recebido na requisição </param>
             <returns> Retorna a resposta para o usuário (front-end) </returns>
         </member>
         <member name="M:webapi.filmes.manha.Controllers.GeneroController.Post(webapi.filmes.manha.Domains.GeneroDomain)">
@@ -24,19 +73,12 @@
             <param name="IdGenero"> Objeto recebido na requisição </param>
             <returns> Retorna a resposta para o usuário (front-end) </returns>
         </member>
-        <member name="M:webapi.filmes.manha.Controllers.GeneroController.GetById(System.Int32)">
-            <summary>
-            Endpoint que aciona o método de buscar gênero pelo id
-            </summary>
-            <param name="id"> Objeto recebido na requisição </param>
-            <returns> Retorna a resposta para o usuário (front-end) </returns>
-        </member>
         <member name="M:webapi.filmes.manha.Controllers.GeneroController.PutIdUrl(System.Int32,webapi.filmes.manha.Domains.GeneroDomain)">
             <summary>
             Endpoint que aciona o método de atualizar gênero buscando pelo id
             </summary>
             <param name="id"> Objeto recebido na requisição </param>
-            <param name="generoUpdateUrl"> Objeto devolvido na requisição </param>
+            <param name="genero"> Objeto devolvido na requisição </param>
             <returns> Retorna a resposta para o usuário (front-end) </returns>
         </member>
         <member name="M:webapi.filmes.manha.Controllers.GeneroController.PutIdBody(webapi.filmes.manha.Domains.GeneroDomain)">
@@ -104,6 +146,18 @@
                 - Windows: Integrated Security = true
                 - SqlServer: User Id = sa; Pwd = Senha
             </summary>
+        </member>
+        <member name="M:webapi.filmes.manha.Repositories.FilmeRepository.Cadastrar(webapi.filmes.manha.Domains.FilmeDomain)">
+            <summary>
+            Cadastrar um novo filme
+            </summary>
+            <param name="novoFilme"> Filme a ser adicionado </param>
+        </member>
+        <member name="M:webapi.filmes.manha.Repositories.FilmeRepository.Deletar(System.Int32)">
+            <summary>
+            Deletar um filme existente
+            </summary>
+            <param name="IdFilme"> Id do filme a ser deletado </param>
         </member>
         <member name="F:webapi.filmes.manha.Repositories.GeneroRepository.StringConexao">
             <summary>
