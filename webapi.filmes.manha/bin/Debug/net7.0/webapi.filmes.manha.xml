@@ -207,5 +207,15 @@
             </summary>
             <returns> Lista de objetos (gêneros) </returns>
         </member>
+        <member name="F:webapi.filmes.manha.Repositories.UsuarioRepository.StringConexao">
+            <summary>
+            String de conexão com o banco de dados que recebe os seguintes parâmetros:
+            Data Source: nome do servidor
+            Initial Catalog: Nome do banco de dados
+            Autenticação: 
+                - Windows: Integrated Security = true
+                - SqlServer: User Id = sa; Pwd = Senha
+            </summary>
+        </member>
     </members>
 </doc>

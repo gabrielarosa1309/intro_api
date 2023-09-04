@@ -4,5 +4,6 @@ namespace webapi.filmes.manha.Interfaces
 {
     public interface IUsuarioRepository
     {
+        UsuarioDomain Login(string email, string password);
     }
 }
