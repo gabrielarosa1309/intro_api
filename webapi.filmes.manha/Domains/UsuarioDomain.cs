@@ -13,6 +13,6 @@ namespace webapi.filmes.manha.Domains
         [Required(ErrorMessage = "O campo senha é obrigtório!")]
         public string Senha { get; set; }
 
-        public bool Permissao { get; set; }
+        public string Permissao { get; set; }
     }
 }

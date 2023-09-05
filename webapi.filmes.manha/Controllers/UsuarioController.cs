@@ -52,7 +52,7 @@ namespace webapi.filmes.manha.Controllers
                 {
                     new Claim(JwtRegisteredClaimNames.Jti,usuarioBuscado.IdUsuario.ToString()),
                     new Claim(JwtRegisteredClaimNames.Email,usuarioBuscado.Email),
-                    new Claim(ClaimTypes.Role,usuarioBuscado.Permissao.ToString()),
+                    new Claim(ClaimTypes.Role,usuarioBuscado.Permissao),
 
                     //Existe a possibilidade de criar uma claim personalizada
                     //new Claim("Claim Personalizada","Valor da claim personalizada")
@@ -62,13 +62,32 @@ namespace webapi.filmes.manha.Controllers
                 var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("filmes-chave-autenticacao-webapi-dev"));
 
                 //3 - Definir as credenciais do token (HEADER)
-                var creds = new SigningCredentials(key,SecurityAlgorithms.HmacSha256);
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                return Ok(usuarioBuscado);
+                //4 - Gera token
+                var token = new JwtSecurityToken
+                (
+                        //emissor do token (NOME do projeto)
+                        issuer: "webapi.filmes.manha",
+
+                        //destinatário do token (TAMBÉM O NOME DO PROJETO)
+                        audience: "webapi.filmes.manha",
+
+                        //dados definidos nas claims (informações)
+                        claims: claims,
+
+                        //tempo de expiração do token
+                        expires: DateTime.Now.AddMinutes(5),
+
+                        //credenciais do token
+                        signingCredentials: creds
+                    );
+
+                return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
             }
-            catch (Exception erro) 
-            { 
-            
+            catch (Exception erro)
+            {
+                return BadRequest(erro.Message);
             }
         }
 

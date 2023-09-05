@@ -35,7 +35,7 @@ namespace webapi.filmes.manha.Repositories
                         {
                             IdUsuario = Convert.ToInt32(rdr["IdUsuario"]),
                             Email = rdr["Email"].ToString(),
-                            Permissao = Convert.ToBoolean(rdr["Permissao"])
+                            Permissao = rdr["Permissao"].ToString()
                         };
                         return usuario;
                     }
